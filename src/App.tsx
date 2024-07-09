@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button } from "@mui/material";
+import { WeatherPage } from "./features";
+import { useRecoilState } from "recoil";
+import { defaultTheme } from "./recoil/theme.state";
+import { DarkTheme, LightTheme } from "./theme";
+import { defaultWindowSize } from "./recoil";
+import { useEffect } from "react";
 
-function App() {
+export const App = () => {
+  const [theme, setTheme] = useRecoilState(defaultTheme);
+  const [windowSize, setWindowSize] = useRecoilState(defaultWindowSize);
+
+  useEffect(() => {
+    const handleResize = () =>
+      setWindowSize({ ...windowSize, width: window.innerWidth });
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div
+      style={{
+        backgroundImage: "url(/background-image.png)",
+        height: "100vh",
+        backgroundSize: "cover",
+        backgroundColor: theme.background.app,
+      }}
+    >
+      {windowSize.width < 576 ? (
+        <></>
+      ) : (
+        <Button
+          sx={{
+            backgroundColor: "white",
+            position: "absolute",
+            margin: "20px",
+          }}
+          onClick={() => {
+            if (theme === LightTheme) {
+              setTheme(DarkTheme);
+            } else {
+              setTheme(LightTheme);
+            }
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Change Theme
+        </Button>
+      )}
+      <WeatherPage />;
     </div>
   );
-}
-
-export default App;
+};

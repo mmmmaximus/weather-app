@@ -1,0 +1,2 @@
+export const MAX_HISTORY_CACHE_LENGTH = 5;
+export const MAX_SEARCH_DROPDOWN_OPTIONS_LENGTH = 5;
