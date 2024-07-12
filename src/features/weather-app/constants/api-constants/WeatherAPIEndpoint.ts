@@ -1,5 +1,6 @@
 import { HTTPMethod } from "../../../../constants";
 
+export const CORS_URL = "https://cors-anywhere.herokuapp.com/";
 export const WEATHER_BASE_URL = "http://api.openweathermap.org";
 
 export const WeatherAPIEndpoint = {

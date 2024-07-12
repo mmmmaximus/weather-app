@@ -1,7 +1,7 @@
 import { APIKeys } from "../../../constants";
 import { IApiResponse } from "../../../interface";
 import { sendRequest } from "../../../services";
-import { WEATHER_BASE_URL, WeatherAPIEndpoint } from "../constants";
+import { CORS_URL, WEATHER_BASE_URL, WeatherAPIEndpoint } from "../constants";
 import { ILatLon } from "../interface";
 import { getDataFromWeatherApiResponse } from "../utils";
 
@@ -12,7 +12,7 @@ export const getWeatherData = async (
   try {
     const response: any = await sendRequest(
       WeatherAPIEndpoint.getWeatherData.method,
-      `${WEATHER_BASE_URL}${WeatherAPIEndpoint.getWeatherData.uri}`,
+      `${CORS_URL}${WEATHER_BASE_URL}${WeatherAPIEndpoint.getWeatherData.uri}`,
       { lat, lon, appid: APIKeys.OPEN_WEATHER_API_KEY, units: "metric" }
     );
 

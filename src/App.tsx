@@ -1,10 +1,11 @@
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { WeatherPage } from "./features";
 import { useRecoilState } from "recoil";
 import { defaultTheme } from "./recoil/theme.state";
 import { DarkTheme, LightTheme } from "./theme";
 import { defaultWindowSize } from "./recoil";
 import { useEffect } from "react";
+import { SharedAssets } from "./assets";
 
 export const App = () => {
   const [theme, setTheme] = useRecoilState(defaultTheme);
@@ -19,12 +20,14 @@ export const App = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        backgroundImage: "url(/background-image.png)",
-        height: "100vh",
+    <Box
+      sx={{
         backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        width: "100vw",
         backgroundColor: theme.background.app,
+        backgroundImage: `url(${SharedAssets.backgroundImage})`,
       }}
     >
       {windowSize.width < 576 ? (
@@ -48,6 +51,6 @@ export const App = () => {
         </Button>
       )}
       <WeatherPage />;
-    </div>
+    </Box>
   );
 };
