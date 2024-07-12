@@ -7,8 +7,6 @@ export const dropdownOptionsHandler = (
   optionList: Option[],
   maxDropdownOptionLength: number
 ): Option[] => {
-  console.log({ option, optionList });
-
   if (optionList.length < maxDropdownOptionLength) {
     return [option, ...optionList.filter((item) => item.name !== option.name)];
   } else {

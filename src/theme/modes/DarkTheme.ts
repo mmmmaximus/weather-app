@@ -6,6 +6,7 @@ export const DarkTheme = {
   background: {
     app: "purple",
     rowButton: "black",
+    themeButton: "#000000",
     textField: "#1A1A1A80",
   },
 };

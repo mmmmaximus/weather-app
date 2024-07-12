@@ -53,8 +53,6 @@ export const HistoryRow = ({
 
   const renderRowContebnt = () => {
     if (windowSize.width < 576) {
-      console.log("small");
-
       return (
         <Grid container sx={{ justifyContent: "space-between" }}>
           <Grid item sx={{ display: "block", paddingLeft: "10px" }}>

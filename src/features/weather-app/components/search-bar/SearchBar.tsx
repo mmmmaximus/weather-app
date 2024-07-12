@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Button, CardMedia } from "@mui/material";
+import { Autocomplete, Box, CardMedia } from "@mui/material";
 import {
   SearchBarBoxSx,
   SearchButton,
@@ -48,7 +48,6 @@ export const SearchBar = ({
         MAX_SEARCH_DROPDOWN_OPTIONS_LENGTH
       );
       setDropdownOptions(newDropdownList);
-      console.log({ newDropdownList });
 
       const searchResults = await handleSearch(searchTerm);
       if (searchResults.error) {

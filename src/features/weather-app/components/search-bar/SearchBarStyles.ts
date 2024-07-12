@@ -32,11 +32,11 @@ export const StyledTextField = styled(TextField)(() => {
     },
     marginRight: 20,
     backgroundColor: theme.background.textField,
-    width: "43%",
+    width: "620px",
 
     [breakpoints.down("sm")]: {
       marginRight: 10,
-      width: "79%",
+      width: "260px",
       "& > div:first-of-type": {
         borderRadius: 8,
       },

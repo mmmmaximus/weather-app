@@ -6,6 +6,7 @@ export const LightTheme = {
   background: {
     app: "#7F66C7",
     rowButton: "white",
+    themeButton: "#FFFFFF",
     textField: "#FFFFFF33",
   },
 };
