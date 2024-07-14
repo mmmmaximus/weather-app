@@ -20,8 +20,6 @@ export const WeatherPage = () => {
         <IconButton
           sx={IconButtonSx}
           onClick={() => {
-            console.log(theme.background.themeButton);
-
             if (theme === LightTheme) {
               setTheme(DarkTheme);
             } else {

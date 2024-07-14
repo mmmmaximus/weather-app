@@ -1,15 +1,18 @@
 import { HTTPMethod } from "../../../../constants";
 
-export const CORS_URL = "https://cors-anywhere.herokuapp.com/";
-export const WEATHER_BASE_URL = "http://api.openweathermap.org";
+export const LOCAL_CORS_URL = `http://localhost:${
+  process.env.REACT_APP_CORS_PORT || "8080"
+}`;
+
+export const CORS_URL = process.env.REACT_APP_CORS_URL;
 
 export const WeatherAPIEndpoint = {
   getLatLon: {
-    uri: "/geo/1.0/direct",
+    uri: "/api/latLon",
     method: HTTPMethod.GET,
   },
   getWeatherData: {
-    uri: "/data/2.5/weather",
+    uri: "/api/weather",
     method: HTTPMethod.GET,
   },
 };

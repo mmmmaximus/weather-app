@@ -1,7 +1,7 @@
 import { APIKeys } from "../../../constants";
 import { IApiResponse } from "../../../interface";
 import { sendRequest } from "../../../services";
-import { CORS_URL, WEATHER_BASE_URL, WeatherAPIEndpoint } from "../constants";
+import { CORS_URL, WeatherAPIEndpoint } from "../constants";
 import { getDataFromLatLonApiResponse } from "../utils";
 
 export const getLatLon = async (country: string): Promise<IApiResponse> => {
@@ -14,7 +14,7 @@ export const getLatLon = async (country: string): Promise<IApiResponse> => {
 
     const response: any = await sendRequest(
       WeatherAPIEndpoint.getLatLon.method,
-      `${CORS_URL}${WEATHER_BASE_URL}${WeatherAPIEndpoint.getLatLon.uri}`,
+      `${CORS_URL}${WeatherAPIEndpoint.getLatLon.uri}`,
       { q: country, appid: APIKeys.OPEN_WEATHER_API_KEY }
     );
 
