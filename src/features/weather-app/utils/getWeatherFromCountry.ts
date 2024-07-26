@@ -1,8 +1,8 @@
 import { IApiResponse } from "../../../interface";
-import { getLatLon, getWeatherData } from "../hooks";
+import { getLocationKey, getWeatherData } from "../hooks";
 
 export const getWeatherFromCountry = async (country: string) => {
-  const latLonResponse: IApiResponse = await getLatLon(country);
+  const latLonResponse: IApiResponse = await getLocationKey(country);
   if (latLonResponse.error) {
     return latLonResponse;
   }

@@ -7,8 +7,8 @@ export const LOCAL_CORS_URL = `http://localhost:${
 export const CORS_URL = process.env.REACT_APP_CORS_URL;
 
 export const WeatherAPIEndpoint = {
-  getLatLon: {
-    uri: "/api/latLon",
+  getLocationKey: {
+    uri: "/api/locationKey",
     method: HTTPMethod.GET,
   },
   getWeatherData: {

@@ -1,2 +1,2 @@
-export * from "./ILatLon";
+export * from "./ICountryName";
 export * from "./IWeatherData";

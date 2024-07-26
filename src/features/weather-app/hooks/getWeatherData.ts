@@ -2,27 +2,28 @@ import { APIKeys } from "../../../constants";
 import { IApiResponse } from "../../../interface";
 import { sendRequest } from "../../../services";
 import { CORS_URL, WeatherAPIEndpoint } from "../constants";
-import { ILatLon } from "../interface";
+import { ICountryName } from "../interface";
 import { getDataFromWeatherApiResponse } from "../utils";
 
-export const getWeatherData = async ({
-  lat,
-  lon,
-  country,
-  countryShortForm,
-}: ILatLon): Promise<IApiResponse> => {
+export const getWeatherData = async (
+  countryObj: ICountryName
+): Promise<IApiResponse> => {
   try {
     const response: any = await sendRequest(
       WeatherAPIEndpoint.getWeatherData.method,
       `${CORS_URL}${WeatherAPIEndpoint.getWeatherData.uri}`,
-      { lat, lon, appid: APIKeys.OPEN_WEATHER_API_KEY, units: "metric" }
+      {
+        locationKey: countryObj.locationKey,
+        apikey: APIKeys.ACCUWEATHER_API_KEY,
+        details: "true",
+      }
     );
 
     return {
       response: getDataFromWeatherApiResponse(
         response,
-        country,
-        countryShortForm
+        countryObj.country,
+        countryObj.countryShortForm
       ),
     };
   } catch (e) {

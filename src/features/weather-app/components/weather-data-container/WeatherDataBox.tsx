@@ -60,7 +60,7 @@ export const WeatherDataBox = () => {
                     width: windowSize.width < 576 ? 157 : 300,
                     height: "auto",
                   }}
-                  alt="weather"
+                  alt={weatherData.weather}
                   src={selectImageFromWeatherData(weatherData)}
                 />
               )}

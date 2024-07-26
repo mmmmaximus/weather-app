@@ -1,2 +1,2 @@
-export * from "./getLatLon";
+export * from "./getLocationKey";
 export * from "./getWeatherData";

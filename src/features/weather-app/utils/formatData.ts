@@ -1,41 +1,39 @@
 import { capitalizeEveryWord } from "../../../utils";
 import { HistoryRowProps } from "../components";
-import { ILatLon, IWeatherData } from "../interface";
+import { ICountryName, IWeatherData } from "../interface";
 
 export const getDataFromWeatherApiResponse = (
   weatherData: any,
-  country?: string,
-  countryShortForm?: string
+  country: string,
+  countryShortForm: string
 ): IWeatherData => {
+  const formatTemp = (str: any) =>
+    Number(str["Metric"]["Value"].toString().split(".")[0]);
+
   return {
-    temperature: weatherData.main.temp,
-    maxTemperature: weatherData.main.temp_max,
-    minTemperature: weatherData.main.temp_min,
-    weather: weatherData.weather[0].main,
-    country: capitalizeEveryWord(country ?? weatherData.name),
-    countryShortForm: (
-      countryShortForm ?? weatherData.sys.country
-    ).toUpperCase(),
-    dateTime: weatherData.dt,
-    humidity: weatherData.main.humidity,
+    temperature: formatTemp(weatherData[0]["Temperature"]),
+    maxTemperature: formatTemp(
+      weatherData[0]["TemperatureSummary"]["Past24HourRange"]["Maximum"]
+    ),
+    minTemperature: formatTemp(
+      weatherData[0]["TemperatureSummary"]["Past24HourRange"]["Minimum"]
+    ),
+    weather: weatherData[0]["WeatherText"],
+    country: capitalizeEveryWord(country),
+    countryShortForm: countryShortForm.toUpperCase(),
+    dateTime: weatherData[0]["EpochTime"],
+    humidity: weatherData[0]["RelativeHumidity"],
   };
 };
 
-export const getDataFromLatLonApiResponse = (latLonData: any): ILatLon => {
-  const data = latLonData.results[0];
-  const lat = (
-    (data.bounds.northeast.lat + data.bounds.southwest.lat) /
-    2
-  ).toString();
-  const lon = (
-    (data.bounds.northeast.lng + data.bounds.southwest.lng) /
-    2
-  ).toString();
-  const country =
-    data.components?.city ?? data.components?.state ?? data.components?.country;
-  const countryShortForm = data.components?.["ISO_3166-1_alpha-2"];
-
-  return { countryShortForm, country, lat, lon };
+export const getDataFromLocationKeyApiResponse = (
+  locationKeyData: any
+): ICountryName => {
+  return {
+    locationKey: locationKeyData[0]?.["Key"],
+    country: locationKeyData[0]?.["EnglishName"],
+    countryShortForm: locationKeyData[0]?.["Country"]["ID"],
+  };
 };
 
 export const getRowPropsFromWeatherProps = (
