@@ -9,6 +9,7 @@ export const getWeatherData = async ({
   lat,
   lon,
   country,
+  countryShortForm,
 }: ILatLon): Promise<IApiResponse> => {
   try {
     const response: any = await sendRequest(
@@ -17,7 +18,13 @@ export const getWeatherData = async ({
       { lat, lon, appid: APIKeys.OPEN_WEATHER_API_KEY, units: "metric" }
     );
 
-    return { response: getDataFromWeatherApiResponse(response, country) };
+    return {
+      response: getDataFromWeatherApiResponse(
+        response,
+        country,
+        countryShortForm
+      ),
+    };
   } catch (e) {
     return { error: e as string };
   }

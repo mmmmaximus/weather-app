@@ -4,7 +4,8 @@ import { ILatLon, IWeatherData } from "../interface";
 
 export const getDataFromWeatherApiResponse = (
   weatherData: any,
-  country?: string
+  country?: string,
+  countryShortForm?: string
 ): IWeatherData => {
   return {
     temperature: weatherData.main.temp,
@@ -12,7 +13,9 @@ export const getDataFromWeatherApiResponse = (
     minTemperature: weatherData.main.temp_min,
     weather: weatherData.weather[0].main,
     country: capitalizeEveryWord(country ?? weatherData.name),
-    countryShortForm: weatherData.sys.country,
+    countryShortForm: (
+      countryShortForm ?? weatherData.sys.country
+    ).toUpperCase(),
     dateTime: weatherData.dt,
     humidity: weatherData.main.humidity,
   };
@@ -30,7 +33,9 @@ export const getDataFromLatLonApiResponse = (latLonData: any): ILatLon => {
   ).toString();
   const country =
     data.components?.city ?? data.components?.state ?? data.components?.country;
-  return { country, lat, lon };
+  const countryShortForm = data.components?.["ISO_3166-1_alpha-2"];
+
+  return { countryShortForm, country, lat, lon };
 };
 
 export const getRowPropsFromWeatherProps = (

@@ -21,7 +21,12 @@ export const getLatLon = async (country: string): Promise<IApiResponse> => {
     const formattedResponse = getDataFromLatLonApiResponse(response);
     localStorage.setItem(
       country,
-      JSON.stringify({ lat: formattedResponse.lat, lon: formattedResponse.lon })
+      JSON.stringify({
+        countryShortForm: formattedResponse.countryShortForm,
+        country: formattedResponse.country,
+        lat: formattedResponse.lat,
+        lon: formattedResponse.lon,
+      })
     );
 
     return { response: formattedResponse };
