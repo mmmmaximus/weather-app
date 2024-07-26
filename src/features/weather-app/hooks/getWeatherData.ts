@@ -27,6 +27,6 @@ export const getWeatherData = async (
       ),
     };
   } catch (e) {
-    return { error: e as string };
+    return { error: "Please try again tomorrow" };
   }
 };

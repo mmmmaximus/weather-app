@@ -5,25 +5,26 @@ export const sendRequest = async (
   url: string,
   params?: any
 ) => {
-  const paramsToString = new URLSearchParams(params).toString();
-  const urlWithParams = params ? `${url}?${paramsToString}` : url;
+  const urlWithParams = params
+    ? `${url}?${new URLSearchParams(params).toString()}`
+    : url;
 
   try {
-    const xhr = new XMLHttpRequest();
-    xhr.open(method, urlWithParams);
+    const options = {
+      method,
+      headers: {
+        "Content-Type": "application/json", // Default for most APIs
+      },
+    };
 
-    const response = await new Promise((resolve, reject) => {
-      xhr.onload = function () {
-        if (xhr.status === 200) {
-          resolve(JSON.parse(xhr.responseText));
-        } else {
-          reject(new Error(`Error: ${xhr.statusText}`));
-        }
-      };
-      xhr.send();
-    });
+    const response = await fetch(urlWithParams, options);
 
-    return response;
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error("Error:", error);
   }

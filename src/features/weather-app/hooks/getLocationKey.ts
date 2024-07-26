@@ -25,6 +25,6 @@ export const getLocationKey = async (
 
     return { response: formattedResponse };
   } catch (e) {
-    return { error: "Not found" };
+    return { error: "Please try again tomorrow" };
   }
 };
