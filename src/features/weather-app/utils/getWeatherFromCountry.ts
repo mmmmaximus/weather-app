@@ -8,8 +8,7 @@ export const getWeatherFromCountry = async (country: string) => {
   }
 
   const weatherDataResponse: IApiResponse = await getWeatherData(
-    latLonResponse.response,
-    country
+    latLonResponse.response
   );
   if (weatherDataResponse.error) {
     return weatherDataResponse;

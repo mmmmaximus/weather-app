@@ -19,7 +19,18 @@ export const getDataFromWeatherApiResponse = (
 };
 
 export const getDataFromLatLonApiResponse = (latLonData: any): ILatLon => {
-  return { lat: latLonData[0].lat, lon: latLonData[0].lon };
+  const data = latLonData.results[0];
+  const lat = (
+    (data.bounds.northeast.lat + data.bounds.southwest.lat) /
+    2
+  ).toString();
+  const lon = (
+    (data.bounds.northeast.lng + data.bounds.southwest.lng) /
+    2
+  ).toString();
+  const country =
+    data.components?.city ?? data.components?.state ?? data.components?.country;
+  return { country, lat, lon };
 };
 
 export const getRowPropsFromWeatherProps = (

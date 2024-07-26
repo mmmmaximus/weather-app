@@ -5,10 +5,11 @@ import { CORS_URL, WeatherAPIEndpoint } from "../constants";
 import { ILatLon } from "../interface";
 import { getDataFromWeatherApiResponse } from "../utils";
 
-export const getWeatherData = async (
-  { lat, lon }: ILatLon,
-  country?: string
-): Promise<IApiResponse> => {
+export const getWeatherData = async ({
+  lat,
+  lon,
+  country,
+}: ILatLon): Promise<IApiResponse> => {
   try {
     const response: any = await sendRequest(
       WeatherAPIEndpoint.getWeatherData.method,

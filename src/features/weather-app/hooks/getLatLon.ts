@@ -15,11 +15,14 @@ export const getLatLon = async (country: string): Promise<IApiResponse> => {
     const response: any = await sendRequest(
       WeatherAPIEndpoint.getLatLon.method,
       `${CORS_URL}${WeatherAPIEndpoint.getLatLon.uri}`,
-      { q: country, appid: APIKeys.OPEN_WEATHER_API_KEY }
+      { q: country, key: APIKeys.OPEN_CAGE_DATA_API_KEY }
     );
 
     const formattedResponse = getDataFromLatLonApiResponse(response);
-    localStorage.setItem(country, JSON.stringify(formattedResponse));
+    localStorage.setItem(
+      country,
+      JSON.stringify({ lat: formattedResponse.lat, lon: formattedResponse.lon })
+    );
 
     return { response: formattedResponse };
   } catch (e) {
