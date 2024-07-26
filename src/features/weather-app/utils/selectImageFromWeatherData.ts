@@ -4,10 +4,10 @@ import { IWeatherData } from "../interface";
 export const selectImageFromWeatherData = (
   weatherData: IWeatherData
 ): string => {
-  if (weatherData.weather === "Clouds") {
+  if (weatherData.weather.toLowerCase().includes("cloud")) {
     return SharedAssets.cloud;
   }
-  if (weatherData.weather === "Clear") {
+  if (weatherData.weather.toLowerCase().includes("sun")) {
     return SharedAssets.sun;
   }
   return "";
