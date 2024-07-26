@@ -13,8 +13,6 @@ export const AlertSnackBar = ({
   message,
   onCloseSetter,
 }: AlertSnackBarProps) => {
-  console.log({ message });
-
   return (
     <Snackbar open={open} autoHideDuration={3000} onClose={onCloseSetter}>
       <Alert severity={severity || "error"}>{message}</Alert>
