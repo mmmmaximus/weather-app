@@ -1,5 +1,4 @@
-# to run the project 
-note: api calls on github pages link not working due to https enforcement
+# to run the project locally
 > clone the repo
 
 > change the .env.template file to .env
